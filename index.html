@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Happy Birthday, Mayukha &mdash; v2</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;700&family=Great+Vibes&family=Quicksand:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="v2-styles.css" />
+</head>
+<body>
+
+  <!-- ===================== POLAROID PHOTO WALL (BACKGROUND) ===================== -->
+  <div class="photo-wall" id="photo-wall" aria-hidden="true">
+    <!-- 4 scrolling columns of polaroids injected by JS -->
+  </div>
+  <div class="photo-wall-tint" aria-hidden="true"></div>
+
+  <!-- ===================== MUSIC TOGGLE ===================== -->
+  <button class="music-toggle" id="music-toggle" aria-label="Toggle music" title="Toggle music">
+    <svg class="icon-muted" viewBox="0 0 24 24" width="22" height="22" fill="currentColor" aria-hidden="true">
+      <path d="M3 9v6h4l5 4V5L7 9H3zm13.5 3a4.5 4.5 0 0 0-2.5-4.03v8.06A4.5 4.5 0 0 0 16.5 12zM14 3.23v2.06a7 7 0 0 1 0 13.42v2.06a9 9 0 0 0 0-17.54z" opacity=".35"/>
+      <line x1="3" y1="3" x2="21" y2="21" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+    </svg>
+    <svg class="icon-playing" viewBox="0 0 24 24" width="22" height="22" fill="currentColor" aria-hidden="true">
+      <path d="M3 9v6h4l5 4V5L7 9H3zm13.5 3a4.5 4.5 0 0 0-2.5-4.03v8.06A4.5 4.5 0 0 0 16.5 12zM14 3.23v2.06a7 7 0 0 1 0 13.42v2.06a9 9 0 0 0 0-17.54z"/>
+    </svg>
+  </button>
+  <audio id="bg-audio" loop preload="auto">
+    <source src="assets/audio/song.mp3" type="audio/mpeg" />
+  </audio>
+
+  <!-- ===================== CONFETTI ===================== -->
+  <canvas id="confetti-canvas" aria-hidden="true"></canvas>
+
+  <!-- ===================== HERO ===================== -->
+  <section class="hero reveal" id="hero">
+    <div class="hero-card">
+      <p class="eyebrow">A scrapbook for you &middot; June 1, 2026</p>
+      <h1 class="hero-title">Happy Birthday,</h1>
+      <div class="hero-name">Mayukha</div>
+      <p class="hero-sub">with all the love from <em>Karan</em> &amp; <em>Udaya</em></p>
+      <p class="hero-hint">scroll down for the goodies &darr;</p>
+    </div>
+  </section>
+
+  <!-- ===================== CAKE ===================== -->
+  <section class="section cake-section reveal" id="cake-section">
+    <div class="paper-card">
+      <h2 class="section-title">Make a wish, Mayu</h2>
+      <p class="section-sub">click the cake to blow out the candles</p>
+
+      <div class="cake-wrapper">
+        <div class="cake" id="cake" role="button" tabindex="0" aria-label="Click to blow out candles">
+          <div class="candles">
+            <div class="candle">
+              <div class="flame"></div>
+              <div class="smoke" aria-hidden="true"></div>
+              <div class="wick"></div>
+              <div class="stick"></div>
+            </div>
+            <div class="candle">
+              <div class="flame"></div>
+              <div class="smoke" aria-hidden="true"></div>
+              <div class="wick"></div>
+              <div class="stick"></div>
+            </div>
+            <div class="candle">
+              <div class="flame"></div>
+              <div class="smoke" aria-hidden="true"></div>
+              <div class="wick"></div>
+              <div class="stick"></div>
+            </div>
+          </div>
+          <svg class="cake-svg" viewBox="0 0 280 280" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
+            <defs>
+              <linearGradient id="creamTier" x1="0%" y1="0%" x2="0%" y2="100%">
+                <stop offset="0%"  stop-color="#fff5e1"/>
+                <stop offset="50%" stop-color="#f4c8a3"/>
+                <stop offset="100%" stop-color="#c8946a"/>
+              </linearGradient>
+              <linearGradient id="coralTier" x1="0%" y1="0%" x2="0%" y2="100%">
+                <stop offset="0%"  stop-color="#ff9d6c"/>
+                <stop offset="50%" stop-color="#ec6b4a"/>
+                <stop offset="100%" stop-color="#a33e1f"/>
+              </linearGradient>
+              <linearGradient id="frostingGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+                <stop offset="0%"  stop-color="#fffaf0"/>
+                <stop offset="100%" stop-color="#ead8b8"/>
+              </linearGradient>
+              <linearGradient id="sideShadow" x1="0%" y1="0%" x2="100%" y2="0%">
+                <stop offset="0%"   stop-color="rgba(0,0,0,0.30)"/>
+                <stop offset="50%"  stop-color="rgba(0,0,0,0)"/>
+                <stop offset="100%" stop-color="rgba(0,0,0,0.30)"/>
+              </linearGradient>
+              <radialGradient id="plateGrad" cx="50%" cy="40%" r="60%">
+                <stop offset="0%"  stop-color="#8a6347"/>
+                <stop offset="100%" stop-color="#2a1c10"/>
+              </radialGradient>
+              <radialGradient id="cherryGrad" cx="35%" cy="35%" r="60%">
+                <stop offset="0%"  stop-color="#ff9999"/>
+                <stop offset="60%" stop-color="#dc3a3a"/>
+                <stop offset="100%" stop-color="#8e1a1a"/>
+              </radialGradient>
+            </defs>
+
+            <!-- Plate -->
+            <ellipse cx="140" cy="266" rx="136" ry="13" fill="url(#plateGrad)"/>
+            <ellipse cx="140" cy="262" rx="136" ry="10" fill="#5a3d27"/>
+            <ellipse cx="140" cy="260" rx="130" ry="6"  fill="#3d2817"/>
+
+            <!-- ============== BOTTOM TIER (cream) ============== -->
+            <rect x="20" y="180" width="240" height="80" rx="3" fill="url(#creamTier)"/>
+            <rect x="20" y="180" width="240" height="80" rx="3" fill="url(#sideShadow)" opacity="0.7"/>
+            <!-- Frosting top with drips -->
+            <path d="M20 188
+                     Q32 178 44 188 Q56 178 68 188 Q80 178 92 188
+                     Q104 178 116 188 Q128 178 140 188 Q152 178 164 188
+                     Q176 178 188 188 Q200 178 212 188 Q224 178 236 188
+                     Q248 178 260 188 L260 196 L20 196 Z"
+                  fill="url(#frostingGrad)"/>
+            <!-- Drips down the side -->
+            <path d="M28 196 Q26 210 28 216 L34 216 Q36 210 34 196 Z" fill="url(#frostingGrad)"/>
+            <path d="M252 196 Q254 213 252 220 L258 220 Q260 213 258 196 Z" fill="url(#frostingGrad)"/>
+            <!-- Decorative pearls along bottom edge -->
+            <g fill="#fffaf0" opacity="0.95">
+              <circle cx="32"  cy="252" r="3.2"/>
+              <circle cx="51"  cy="252" r="3.2"/>
+              <circle cx="70"  cy="252" r="3.2"/>
+              <circle cx="89"  cy="252" r="3.2"/>
+              <circle cx="108" cy="252" r="3.2"/>
+              <circle cx="127" cy="252" r="3.2"/>
+              <circle cx="146" cy="252" r="3.2"/>
+              <circle cx="165" cy="252" r="3.2"/>
+              <circle cx="184" cy="252" r="3.2"/>
+              <circle cx="203" cy="252" r="3.2"/>
+              <circle cx="222" cy="252" r="3.2"/>
+              <circle cx="241" cy="252" r="3.2"/>
+            </g>
+
+            <!-- ============== MIDDLE TIER (coral / red velvet) ============== -->
+            <rect x="50" y="118" width="180" height="65" rx="3" fill="url(#coralTier)"/>
+            <rect x="50" y="118" width="180" height="65" rx="3" fill="url(#sideShadow)" opacity="0.6"/>
+            <!-- Frosting top with drips -->
+            <path d="M50 126
+                     Q62 116 74 126 Q86 116 98 126 Q110 116 122 126
+                     Q134 116 146 126 Q158 116 170 126 Q182 116 194 126
+                     Q206 116 218 126 Q224 121 230 126 L230 134 L50 134 Z"
+                  fill="url(#frostingGrad)"/>
+            <!-- Side drips -->
+            <path d="M56 134 Q54 148 56 154 L62 154 Q64 148 62 134 Z" fill="url(#frostingGrad)"/>
+            <path d="M222 134 Q224 150 222 156 L228 156 Q230 150 228 134 Z" fill="url(#frostingGrad)"/>
+            <!-- Pearls -->
+            <g fill="#fffaf0" opacity="0.95">
+              <circle cx="58"  cy="176" r="2.6"/>
+              <circle cx="76"  cy="176" r="2.6"/>
+              <circle cx="94"  cy="176" r="2.6"/>
+              <circle cx="112" cy="176" r="2.6"/>
+              <circle cx="130" cy="176" r="2.6"/>
+              <circle cx="148" cy="176" r="2.6"/>
+              <circle cx="166" cy="176" r="2.6"/>
+              <circle cx="184" cy="176" r="2.6"/>
+              <circle cx="202" cy="176" r="2.6"/>
+              <circle cx="220" cy="176" r="2.6"/>
+            </g>
+
+            <!-- ============== TOP TIER (cream) ============== -->
+            <rect x="78" y="60" width="124" height="60" rx="3" fill="url(#creamTier)"/>
+            <rect x="78" y="60" width="124" height="60" rx="3" fill="url(#sideShadow)" opacity="0.55"/>
+            <!-- Frosting top with drips -->
+            <path d="M78 68
+                     Q90 58 102 68 Q114 58 126 68 Q138 58 150 68
+                     Q162 58 174 68 Q186 58 198 68 Q200 64 202 68
+                     L202 76 L78 76 Z"
+                  fill="url(#frostingGrad)"/>
+            <!-- Side drips -->
+            <path d="M83 76 Q81 88 83 94 L89 94 Q91 88 89 76 Z" fill="url(#frostingGrad)"/>
+            <path d="M195 76 Q197 90 195 96 L201 96 Q203 90 201 76 Z" fill="url(#frostingGrad)"/>
+            <!-- Sprinkles -->
+            <g>
+              <rect x="86"  y="63" width="3" height="7" rx="1.5" fill="#e57aa0" transform="rotate(25 87.5 66.5)"/>
+              <rect x="100" y="61" width="3" height="7" rx="1.5" fill="#d4a047" transform="rotate(-20 101.5 64.5)"/>
+              <rect x="116" y="65" width="3" height="7" rx="1.5" fill="#a07ad6" transform="rotate(45 117.5 68.5)"/>
+              <rect x="132" y="62" width="3" height="7" rx="1.5" fill="#5fa75c" transform="rotate(-35 133.5 65.5)"/>
+              <rect x="148" y="65" width="3" height="7" rx="1.5" fill="#e57aa0" transform="rotate(15 149.5 68.5)"/>
+              <rect x="164" y="61" width="3" height="7" rx="1.5" fill="#d4a047" transform="rotate(-45 165.5 64.5)"/>
+              <rect x="180" y="64" width="3" height="7" rx="1.5" fill="#a07ad6" transform="rotate(30 181.5 67.5)"/>
+              <rect x="194" y="62" width="3" height="7" rx="1.5" fill="#5fa75c" transform="rotate(-15 195.5 65.5)"/>
+            </g>
+            <!-- Pearls along bottom of top tier -->
+            <g fill="#fffaf0" opacity="0.95">
+              <circle cx="86"  cy="113" r="2.4"/>
+              <circle cx="103" cy="113" r="2.4"/>
+              <circle cx="120" cy="113" r="2.4"/>
+              <circle cx="137" cy="113" r="2.4"/>
+              <circle cx="154" cy="113" r="2.4"/>
+              <circle cx="171" cy="113" r="2.4"/>
+              <circle cx="188" cy="113" r="2.4"/>
+            </g>
+          </svg>
+        </div>
+
+        <div class="wish-message" id="wish-message">wish granted &#10024;</div>
+        <button class="relight-btn" id="relight-btn">relight candles</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== GALLERY (Polaroid Spotlight) ===================== -->
+  <section class="section gallery-section reveal" id="gallery">
+    <div class="paper-card paper-card-wide">
+      <h2 class="section-title">A few of our favorites</h2>
+      <p class="section-sub">tap a photo to see it full size</p>
+
+      <div class="polaroid-stage" id="polaroid-stage">
+        <!-- Polaroid cards injected by JS -->
+        <button class="poly-arrow prev" id="poly-prev" aria-label="Previous photo">
+          <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+        </button>
+        <button class="poly-arrow next" id="poly-next" aria-label="Next photo">
+          <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+        </button>
+      </div>
+      <p class="poly-counter" id="poly-counter"></p>
+    </div>
+  </section>
+
+  <!-- ===================== QUIZ ===================== -->
+  <section class="section quiz-section reveal" id="quiz">
+    <div class="paper-card quiz-card">
+      <h2 class="section-title">How well do you know us?</h2>
+      <p class="section-sub" id="quiz-sub">answer honestly!</p>
+
+      <div class="quiz-progress" id="quiz-progress" aria-hidden="true"></div>
+
+      <div class="quiz-stage" id="quiz-stage">
+        <p class="quiz-counter" id="quiz-counter"></p>
+        <h3 class="quiz-question" id="quiz-question"></h3>
+        <div class="quiz-options" id="quiz-options" role="radiogroup" aria-label="Answer choices"></div>
+        <p class="quiz-feedback" id="quiz-feedback" aria-live="polite"></p>
+        <div class="quiz-nav" id="quiz-nav">
+          <button class="quiz-nav-btn" id="quiz-prev" type="button" hidden>&larr; previous</button>
+          <button class="quiz-nav-btn" id="quiz-next" type="button" hidden>next &rarr;</button>
+          <button class="quiz-nav-btn quiz-result-btn" id="quiz-to-result" type="button" hidden>see my result</button>
+        </div>
+      </div>
+
+      <div class="quiz-result" id="quiz-result" hidden>
+        <p class="quiz-score" id="quiz-score"></p>
+        <p class="quiz-message" id="quiz-message"></p>
+        <div class="quiz-result-actions">
+          <button class="relight-btn quiz-restart visible" id="quiz-restart" type="button">try again</button>
+          <button class="quiz-nav-btn quiz-review-btn" id="quiz-review" type="button">review my answers</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== MEMORIES (Torn paper notes) ===================== -->
+  <section class="section memories-section reveal" id="memories">
+    <h2 class="section-title section-title-light">A wishes wall</h2>
+    <p class="section-sub section-sub-light">tap a note to flip it</p>
+
+    <div class="notes-grid" id="notes-grid">
+      <!-- Notes injected by JS -->
+    </div>
+  </section>
+
+  <!-- ===================== LETTER ===================== -->
+  <section class="section letter-section reveal" id="letter">
+    <div class="paper-card letter-card">
+      <span class="letter-heart" aria-hidden="true">&#9829;</span>
+
+      <!-- ============ Edit the letter below ============ -->
+      <p class="letter-greeting">Dear Mayu,</p>
+      <div class="letter-body">
+        <p>Happiest Birthday to you! &#10084;&#65039;</p>
+        <p>Words cannot describe how much we love you but here's an attempt, we just want to tell you how incredibly grateful we are to have you in our lives. You have always been a constant source of support, quietly cheering us on, standing by us, and showing up whenever we need you. No matter what is happening in your own life, you always make time for the people you care about, and that is something we deeply admire.</p>
+        <p>We could legit bet on the fact You would be one of the sweetest people ANYONE could ever meet in their lifetime.</p>
+        <p>You have such top G aura bro. Your smile genuinely lights up every moment and your laugh IS THE BEST omg.</p>
+        <p>There is something truly special about the way you care for people. You remember the little things, notice what others might miss, and always go out of your way to make others feel loved and when you love, you love wholeheartedly and today, I hope all that love finds its way back to you. I hope you receive every bit of happiness, success, and love that you deserve. I hope you build the life you've always dreamed of, find the love of your life, and have all the nicest puppies around you.</p>
+        <p>And selfishly, we hope that no matter where life takes us, we'll always find our way back to each other, spending time together, laughing, and making memories for years to come.</p>
+        <p>Thank you for being you, Mayuka. Never change.</p>
+        <p>Have the most wonderful birthday and an even more amazing year ahead. You deserve nothing but the very best. &#10084;&#65039;</p>
+      </div>
+      <p class="letter-signature">With lots of love,<br/>Udaya &amp; Karan</p>
+      <!-- ============ End letter ============ -->
+    </div>
+  </section>
+
+  <!-- ===================== FOOTER ===================== -->
+  <footer class="footer reveal">
+    <div class="paper-card paper-card-small">
+      <p>made with <span class="heart">&#9829;</span> by Karan &amp; Udaya, May 2026</p>
+      <button class="replay-btn" id="replay-confetti">throw some confetti</button>
+    </div>
+  </footer>
+
+  <!-- ===================== LIGHTBOX ===================== -->
+  <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-hidden="true">
+    <button class="lightbox-close" id="lightbox-close" aria-label="Close">&times;</button>
+    <button class="lightbox-arrow prev" id="lightbox-prev" aria-label="Previous photo">
+      <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+    </button>
+    <img class="lightbox-img" id="lightbox-img" alt="" />
+    <button class="lightbox-arrow next" id="lightbox-next" aria-label="Next photo">
+      <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+    </button>
+  </div>
+
+  <script src="v2-photos.js"></script>
+  <script src="memories.js"></script>
+  <script src="v2-quiz.js"></script>
+  <script src="v2-script.js"></script>
+</body>
+</html>
