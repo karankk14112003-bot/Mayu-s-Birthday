@@ -48,7 +48,7 @@ const PHOTOS = [
    Order matches PHOTOS above, leave blank "" for no caption.
    The polaroid wall in the background doesn't show captions. */
 const GALLERY_CAPTIONS = [
+  "", "", "", "", "", "From Annie ❤️", "", "", "", "",
   "", "", "", "", "", "", "", "", "", "",
-  "", "", "", "", "", "", "", "", "", "",
-  "", "", "", "", "", "", "", "", "", ""
+  "", "", "", "From Kutta ❤️", "", "", "", "", "", ""
 ];
